@@ -1,5 +1,6 @@
 package com.example.artwebsitebe.repository.product;
 
+
 import com.example.artwebsitebe.entity.ProductMedia;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;

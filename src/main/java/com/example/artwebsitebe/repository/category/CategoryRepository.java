@@ -1,5 +1,6 @@
 package com.example.artwebsitebe.repository.category;
 
+
 import com.example.artwebsitebe.entity.Category;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

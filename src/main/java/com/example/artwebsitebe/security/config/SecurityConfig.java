@@ -1,5 +1,6 @@
 package com.example.artwebsitebe.security.config;
 
+
 import com.example.artwebsitebe.security.jwt.JwtAuthenticationFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;

@@ -1,5 +1,6 @@
 package com.example.artwebsitebe.repository.product;
 
+
 import com.example.artwebsitebe.entity.ProductMeta;
 import org.springframework.data.jpa.repository.JpaRepository;
 
