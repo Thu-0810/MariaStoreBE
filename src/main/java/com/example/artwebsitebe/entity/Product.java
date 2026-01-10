@@ -1,11 +1,11 @@
 package com.example.artwebsitebe.entity;
 
-
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -27,7 +27,11 @@ public class Product {
     @Column(columnDefinition = "TEXT")
     private String description;
 
-    private String status = "AVAILABLE";
+    @Column(nullable = false)
+    private String status = "ACTIVE";
+
+    @Column(nullable = false)
+    private Boolean deleted = false;
 
     @Column(name = "created_at")
     private LocalDateTime createdAt = LocalDateTime.now();
@@ -39,4 +43,20 @@ public class Product {
             inverseJoinColumns = @JoinColumn(name = "category_id")
     )
     private Set<Category> categories;
+
+    @OneToMany(
+            mappedBy = "product",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true,
+            fetch = FetchType.LAZY
+    )
+    private List<ProductMedia> mediaList;
+
+    @OneToOne(
+            mappedBy = "product",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true,
+            fetch = FetchType.LAZY
+    )
+    private ProductMeta meta;
 }
