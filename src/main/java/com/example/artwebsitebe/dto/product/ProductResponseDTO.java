@@ -1,6 +1,5 @@
 package com.example.artwebsitebe.dto.product;
 
-
 import lombok.Builder;
 import lombok.Data;
 
@@ -11,7 +10,6 @@ import java.util.Set;
 @Data
 @Builder
 public class ProductResponseDTO {
-
     private Long id;
     private String name;
     private BigDecimal price;
@@ -19,4 +17,6 @@ public class ProductResponseDTO {
     private String status;
     private LocalDateTime createdAt;
     private Set<String> categories;
+
+    private String primaryImageUrl;
 }

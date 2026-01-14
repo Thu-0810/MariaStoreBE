@@ -1,6 +1,5 @@
 package com.example.artwebsitebe.service.product;
 
-
 import com.example.artwebsitebe.dto.product.*;
 import com.example.artwebsitebe.entity.Category;
 import com.example.artwebsitebe.entity.Product;
@@ -123,6 +122,17 @@ public class ProductServiceImpl implements ProductService {
     }
 
     private ProductResponseDTO mapToDTO(Product product) {
+
+        String primaryImageUrl = null;
+
+        if (product.getMediaList() != null && !product.getMediaList().isEmpty()) {
+            primaryImageUrl = product.getMediaList().stream()
+                    .filter(m -> Boolean.TRUE.equals(m.getIsPrimary()))
+                    .map(m -> m.getImageUrl())
+                    .findFirst()
+                    .orElse(product.getMediaList().get(0).getImageUrl());
+        }
+
         return ProductResponseDTO.builder()
                 .id(product.getId())
                 .name(product.getName())
@@ -136,8 +146,10 @@ public class ProductServiceImpl implements ProductService {
                                 .map(Category::getName)
                                 .collect(Collectors.toSet())
                 )
+                .primaryImageUrl(primaryImageUrl)
                 .build();
     }
+
 
     @Override
     public ProductDetailResponseDTO getProductDetail(Long id) {
@@ -210,11 +222,10 @@ public class ProductServiceImpl implements ProductService {
         };
 
         Pageable pageable = PageRequest.of(page, size, sortBy);
-
         Page<Product> pageResult =
                 (category == null || category.isBlank())
-                        ? productRepository.findAllActive(pageable)
-                        : productRepository.findByProductCategory(category, pageable);
+                        ? productRepository.findAllActiveWithMedia(pageable)
+                        : productRepository.findByProductCategoryWithMedia(category, pageable);
 
         return pageResult.map(this::mapToDTO);
     }

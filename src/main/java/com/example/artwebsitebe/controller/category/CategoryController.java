@@ -1,6 +1,5 @@
 package com.example.artwebsitebe.controller.category;
 
-
 import com.example.artwebsitebe.dto.category.CategoryResponseDTO;
 import com.example.artwebsitebe.service.category.CategoryService;
 import lombok.RequiredArgsConstructor;
@@ -19,5 +18,10 @@ public class CategoryController {
     @GetMapping
     public List<CategoryResponseDTO> getAll() {
         return categoryService.getAll();
+    }
+
+    @GetMapping("/with-thumbnail")
+    public List<CategoryResponseDTO> getAllWithThumbnail() {
+        return categoryService.getAllWithThumbnail();
     }
 }
