@@ -1,4 +1,4 @@
-package com.example.artwebsitebe.dto;
+package com.example.artwebsitebe.dto.cart;
 
 import lombok.Data;
 
