@@ -1,7 +1,6 @@
 package com.example.artwebsitebe.service.user;
 
-
-import com.example.artwebsitebe.dto.UserProfileDTO;
+import com.example.artwebsitebe.dto.user.UserProfileDTO;
 import com.example.artwebsitebe.entity.User;
 import com.example.artwebsitebe.repository.user.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -25,14 +24,14 @@ public class UserService {
                 user.getEmail(),
                 user.getFullName(),
                 user.getPhone(),
+                user.getGender(),
+                user.getDateOfBirth(),
+                user.getAvatarUrl(),
                 user.getAddress(),
                 user.getIsVerified(),
                 user.getStatus(),
                 user.getCreatedAt(),
-                user.getRoles()
-                        .stream()
-                        .map(role -> role.getName())
-                        .collect(Collectors.toSet())
+                user.getRoles().stream().map(r -> r.getName()).collect(Collectors.toSet())
         );
     }
 }

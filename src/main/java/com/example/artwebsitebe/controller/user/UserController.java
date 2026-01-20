@@ -1,6 +1,6 @@
 package com.example.artwebsitebe.controller.user;
 
-import com.example.artwebsitebe.dto.UserProfileDTO;
+import com.example.artwebsitebe.dto.user.UserProfileDTO;
 import com.example.artwebsitebe.service.user.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
