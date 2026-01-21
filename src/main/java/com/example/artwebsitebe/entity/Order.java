@@ -1,6 +1,5 @@
 package com.example.artwebsitebe.entity;
 
-
 import com.example.artwebsitebe.enums.OrderStatus;
 import jakarta.persistence.*;
 import lombok.*;
@@ -44,6 +43,12 @@ public class Order {
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderItem> items;
 
-    @OneToOne(mappedBy = "order", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "order", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Payment payment;
+
+    @Column(nullable = false)
+    private Boolean deleted = false;
+
+    @Column(name = "deleted_at")
+    private LocalDateTime deletedAt;
 }
