@@ -12,7 +12,7 @@ import java.util.Optional;
 public interface OrderItemRepository extends JpaRepository<OrderItem, Long> {
 
     @Query("""
-        select new com.example.be.dto.order.AdminOrderItemDTO(
+        select new com.example.artwebsitebe.dto.order.AdminOrderItemDTO(
             p.id,
             p.name,
             pm.imageUrl,
@@ -29,7 +29,7 @@ public interface OrderItemRepository extends JpaRepository<OrderItem, Long> {
     List<AdminOrderItemDTO> findAdminItems(@Param("orderId") Long orderId);
 
     @Query("""
-        select new com.example.be.dto.order.MyOrderItemDTO(
+        select new com.example.artwebsitebe.dto.order.MyOrderItemDTO(
             oi.id,
             p.id,
             p.name,

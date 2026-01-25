@@ -9,7 +9,7 @@ import org.springframework.data.repository.query.Param;
 public interface PostCommentRepository extends JpaRepository<PostComment, Long> {
 
     @Query("""
-        SELECT new com.example.be.dto.post.CommentResponseDTO(
+        SELECT new com.example.artwebsitebe.dto.post.CommentResponseDTO(
             c.id,
             c.postId,
             c.content,

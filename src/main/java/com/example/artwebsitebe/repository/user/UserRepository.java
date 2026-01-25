@@ -51,7 +51,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
     FROM User u
     LEFT JOIN Order o
       ON o.user.id = u.id
-      AND o.status = com.example.be.enums.OrderStatus.COMPLETED
+      AND o.status = com.example.artwebsitebe.enums.OrderStatus.COMPLETED
       AND o.deleted = false
     WHERE (:q IS NULL OR :q = '' OR
           LOWER(u.email) LIKE LOWER(CONCAT('%', :q, '%')) OR
