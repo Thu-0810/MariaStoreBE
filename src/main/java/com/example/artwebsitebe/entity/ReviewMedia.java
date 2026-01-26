@@ -1,8 +1,9 @@
 package com.example.artwebsitebe.entity;
 
-
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "review_media")
@@ -14,10 +15,18 @@ public class ReviewMedia {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "review_id", nullable = false)
     private Review review;
 
-    @Column(name = "image_url", columnDefinition = "TEXT")
+    @Column(name = "image_url", nullable = false)
     private String imageUrl;
+
+    @Column(name = "created_at", nullable = false)
+    private LocalDateTime createdAt;
+
+    @PrePersist
+    void prePersist() {
+        if (createdAt == null) createdAt = LocalDateTime.now();
+    }
 }
