@@ -33,7 +33,8 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
         http
-                .cors(cors -> {})
+                .cors(cors -> {
+                })
                 .csrf(csrf -> csrf.disable())
                 .sessionManagement(session ->
                         session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
@@ -43,12 +44,15 @@ public class SecurityConfig {
                         .requestMatchers("/api/auth/**").permitAll()
                         .requestMatchers("/ws/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/payments/paypal/webhook").permitAll()
-                        .requestMatchers(HttpMethod.GET,  "/api/payments/vnpay/return").permitAll()
-                        .requestMatchers(HttpMethod.GET,  "/api/payments/vnpay/ipn").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/payments/vnpay/return").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/payments/vnpay/ipn").permitAll()
                         .requestMatchers("/uploads/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/posts/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/posts/*/comments").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/posts/*/comments").authenticated()
+
+                        .requestMatchers(HttpMethod.GET, "/api/posts/**").permitAll()
+                        .requestMatchers("/api/me/posts/**").hasAnyRole("USER", "SELLER", "ADMIN")
 
                         .requestMatchers(HttpMethod.POST, "/api/products/*/favorite").authenticated()
                         .requestMatchers(HttpMethod.DELETE, "/api/products/*/favorite").authenticated()

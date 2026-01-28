@@ -1,5 +1,6 @@
 package com.example.artwebsitebe.controller.user;
 
+import com.example.artwebsitebe.dto.user.UpdateMyProfileRequestDTO;
 import com.example.artwebsitebe.dto.user.UserProfileDTO;
 import com.example.artwebsitebe.service.user.UserService;
 import lombok.RequiredArgsConstructor;
@@ -17,5 +18,14 @@ public class UserController {
     public UserProfileDTO getMyProfile(Authentication authentication) {
         String email = authentication.getName();
         return userService.getUserProfile(email);
+    }
+
+    @PutMapping("/me")
+    public UserProfileDTO updateMyProfile(
+            Authentication authentication,
+            @RequestBody UpdateMyProfileRequestDTO request
+    ) {
+        String email = authentication.getName();
+        return userService.updateMyProfile(email, request);
     }
 }
