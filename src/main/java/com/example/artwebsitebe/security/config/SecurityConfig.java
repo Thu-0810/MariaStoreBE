@@ -73,8 +73,8 @@ public class SecurityConfig {
 
                         .requestMatchers("/api/users/me").authenticated()
                         .requestMatchers("/api/notifications/**").authenticated()
-                        .requestMatchers("/api/admin/**").hasRole("ADMIN")
-                        .requestMatchers("/api/seller/**").hasRole("SELLER")
+                        .requestMatchers("/api/admin/posts/**").hasAnyRole("ADMIN", "SELLER")
+                        .requestMatchers("/api/admin/**").hasRole("ADMIN").requestMatchers("/api/seller/**").hasRole("SELLER")
                         .requestMatchers("/api/users/**")
                         .hasAnyRole("USER", "ADMIN", "SELLER")
 
